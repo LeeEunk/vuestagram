@@ -7,10 +7,11 @@
     <div
       :class="datas.filter"
       class="post-body"
+      @click="$store.commit('좋아요', idx)"
       :style="{ backgroundImage: `url(${datas.postImage})` }"
     ></div>
     <div class="post-content">
-      <p>{{ datas.likes }} Likes</p>
+      <p>{{ $store.state.likes[idx] }} Likes</p>
       <p>
         <strong>{{ datas.name }}</strong> {{ datas.content }}
       </p>
@@ -25,6 +26,7 @@ export default {
   props: {
     datas: Object,
     filter: String,
+    idx: Number,
   },
 };
 </script>

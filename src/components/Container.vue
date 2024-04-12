@@ -3,10 +3,12 @@
     <!-- 포스트 페이지 -->
     <div v-if="tab == 0">
       <Post
+        :like="like"
         :filter="filter"
         :datas="datas[i]"
         v-for="(a, i) in datas"
         :key="i"
+        :idx="i"
       />
       <!-- <Post :datas="a" v-for="(a, i) in datas" :key="i" /> -->
     </div>
@@ -48,6 +50,10 @@ write!</textarea
     </div>
   </div>
 
+  <div v-if="tab == 3">
+    <MyPage />
+  </div>
+
   <!-- 
     <Post :datas="datas[0]" />
     <Post :datas="datas[1]" />
@@ -57,6 +63,7 @@ write!</textarea
 <script>
 import Post from "./Post";
 import FilterBox from "./FilterBox";
+import MyPage from "./MyPage";
 
 export default {
   name: "ContainerView",
@@ -91,6 +98,7 @@ export default {
         "xpro2",
       ],
       selected_filter: "",
+      idx: 0,
     };
   },
   mounted() {
@@ -101,6 +109,7 @@ export default {
   components: {
     Post,
     FilterBox,
+    MyPage,
   },
   props: {
     datas: Array,

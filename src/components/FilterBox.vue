@@ -4,7 +4,9 @@
     :style="{ backgroundImage: `url(${image})` }"
     @click="set_filter"
   >
-    <slot></slot>
+    <div class="slot">
+      <slot></slot>
+    </div>
     <!-- <button @click="fire">버튼</button> -->
   </div>
 </template>
@@ -17,7 +19,7 @@ export default {
     //   this.emitter.emit("작명", "데이터");
     // },
     set_filter() {
-      this.emitter.emit("seleted_box", this.filter);
+      this.emitter.emit("selected_box", this.filter);
     },
   },
   props: {
