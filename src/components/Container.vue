@@ -50,8 +50,9 @@ write!</textarea
     </div>
   </div>
 
+  <!-- 마이페이지 -->
   <div v-if="tab == 3">
-    <MyPage />
+    <MyPage :one="1" />
   </div>
 
   <!-- 

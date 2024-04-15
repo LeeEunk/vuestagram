@@ -1,11 +1,12 @@
 <template>
   <div class="header">
     <ul class="header-button-left">
-      <li>Cancel</li>
+      <li @click="goHome">Cancel</li>
     </ul>
     <ul class="header-button-right">
       <li v-if="tab == 1" @click="tab++">Next</li>
       <li v-if="tab == 2" @click="publish">Post</li>
+      <li v-if="tab == 0" @click="tab = 3">My Page</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
@@ -40,9 +41,11 @@
   <button @click="tab = 1">필터보기</button>
   <button @click="tab = 2">글작성</button> -->
 
-  <button type="button" class="btn btn-light" @click="more">더보기</button>
+  <button v-if="tab == 0" type="button" class="btn btn-light" @click="more">
+    더보기
+  </button>
 
-  <div class="footer">
+  <div class="footer" v-if="tab == 0">
     <ul class="footer-button-plus">
       <input @change="upload" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
@@ -74,7 +77,7 @@ export default {
       datas: datas,
       moreCnt: 0,
       step: 0,
-      tab: 3,
+      tab: 0,
       image: "",
       selected_filter: "",
       카운터: 0,
@@ -105,6 +108,9 @@ export default {
     ...mapMutations(["setMore", "좋아요", "나이변경"]),
     now() {
       return new Date();
+    },
+    goHome() {
+      this.$router.go(-1);
     },
     publish() {
       let myPost = {
